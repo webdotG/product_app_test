@@ -1,12 +1,13 @@
 {
-  "homepage": "https://github.com/webdotG/product_app_test",
+  "homepage": "https://webdotg.github.io/product_app_test",
   "name": "product_app_test",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "deploy": "npm run build && npm run gh-pages",
     "build": "next build",
+    "export": "mkdir -p out && cp -r .next/static out/_next/static && cp -r public/* out/",
+    "deploy": "npm run build && npm run export && npm run gh-pages",
     "gh-pages": "gh-pages -d out"
   },
   "dependencies": {

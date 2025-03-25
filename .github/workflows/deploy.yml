@@ -28,4 +28,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+          destination_dir: ./product_app_test
           full_commit_message: "Deploy to GitHub Pages"

@@ -1,25 +1,16 @@
+import path from 'path';
+
 const nextConfig = {
   output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/product_app_test' : '',
-  reactStrictMode: true,
-  
-  // Только для development-режима
-  headers: async () => {
-    if (process.env.NODE_ENV === 'development') {
-      return [{
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline';"
-          }
-        ]
-      }]
-    }
-    return []
-  },
-  
+  distDir: 'out',
+  basePath: '/product_app_test',
+  assetPrefix: '/product_app_test/',
   images: {
     unoptimized: true
+  },
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, '../../')
   }
 }
+
+export default nextConfig;
