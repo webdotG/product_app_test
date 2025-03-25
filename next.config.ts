@@ -1,12 +1,25 @@
-/** @type {import('next').NextConfig} */
-
 const nextConfig = {
   output: 'export',
-  images: {
-    unoptimized: true,
-  },
   basePath: process.env.NODE_ENV === 'production' ? '/product_app_test' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/product_app_test/' : '',
+  reactStrictMode: true,
+  
+  // Только для development-режима
+  headers: async () => {
+    if (process.env.NODE_ENV === 'development') {
+      return [{
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline';"
+          }
+        ]
+      }]
+    }
+    return []
+  },
+  
+  images: {
+    unoptimized: true
+  }
 }
-
-module.exports = nextConfig
