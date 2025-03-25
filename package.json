@@ -1,0 +1,35 @@
+{
+  "homepage": "https://github.com/webdotG/product_app_test",
+  "name": "product_app_test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "next start",
+    "lint": "next lint",
+    "deploy": "npm run build && npm run export && npm run gh-pages",
+    "build": "next build",
+    "export": "next export",
+    "gh-pages": "gh-pages -d out"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.8",
+    "@mui/material": "^6.4.8",
+    "axios": "^1.8.4",
+    "next": "15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.4",
+    "gh-pages": "^6.3.0",
+    "typescript": "^5"
+  }
+}
