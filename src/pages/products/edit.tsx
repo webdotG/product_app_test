@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import ProductForm from '../../../src/components/ProductForm';
-import useProductStore from '../../../src/store/useStore';
+import { useProductStore } from '../../../src/store/products';
 import { Container, Typography, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';

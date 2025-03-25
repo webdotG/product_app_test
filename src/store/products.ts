@@ -1,5 +1,10 @@
 import { create } from 'zustand';
 
+interface ProductRating {
+  rate: number;
+  count: number;
+}
+
 interface Product {
   id: number;
   title: string;
@@ -8,10 +13,17 @@ interface Product {
   image: string;
   liked: boolean;
   category?: string;
-  rating?: {
-    rate: number;
-    count: number;
-  };
+  rating?: ProductRating;
+}
+
+interface ApiProduct {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  category?: string;
+  rating?: ProductRating;
 }
 
 interface ProductStore {
@@ -36,9 +48,9 @@ export const useProductStore = create<ProductStore>((set) => ({
       const response = await fetch('https://fakestoreapi.com/products');
       if (!response.ok) throw new Error('Failed to fetch products');
       
-      const data = await response.json();
+      const data: ApiProduct[] = await response.json();
       set({ 
-        products: data.map((product: any) => ({
+        products: data.map((product: ApiProduct) => ({
           ...product,
           liked: false
         })),
@@ -60,7 +72,6 @@ export const useProductStore = create<ProductStore>((set) => ({
     })),
   
   deleteProduct: async (id) => {
-    // В реальном приложении здесь был бы DELETE запрос к API
     try {
       await fetch(`https://fakestoreapi.com/products/${id}`, {
         method: 'DELETE'
@@ -79,7 +90,7 @@ export const useProductStore = create<ProductStore>((set) => ({
         method: 'POST',
         body: JSON.stringify(product)
       });
-      const newProduct = await response.json();
+      const newProduct: ApiProduct = await response.json();
       
       set((state) => ({
         products: [
@@ -101,7 +112,7 @@ export const useProductStore = create<ProductStore>((set) => ({
         method: 'PUT',
         body: JSON.stringify(product)
       });
-      const updatedProduct = await response.json();
+      const updatedProduct: ApiProduct = await response.json();
       
       set((state) => ({
         products: state.products.map((p) =>

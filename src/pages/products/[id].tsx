@@ -18,14 +18,21 @@ import {
 import { Favorite, FavoriteBorder, Delete, Edit } from '@mui/icons-material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
-import { useProductStore }from '../../store/products';
+import { useProductStore } from '../../store/products';
 import { useEffect } from 'react';
 import StarIcon from '@mui/icons-material/Star';
 
 export default function ProductDetail() {
   const router = useRouter();
   const { id } = router.query;
-  const { products, toggleLike, deleteProduct, loading, error } = useProductStore();
+  const { 
+    products, 
+    toggleLike, 
+    deleteProduct, 
+    loading, 
+    error, 
+    fetchProducts 
+  } = useProductStore();
   
   const product = products.find(p => p.id === Number(id));
   
@@ -33,7 +40,7 @@ export default function ProductDetail() {
     if (products.length === 0) {
       fetchProducts();
     }
-  }, []);
+  }, [products.length, fetchProducts]); // Добавлены зависимости
 
   if (loading && products.length === 0) {
     return (
