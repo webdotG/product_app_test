@@ -4,9 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next start",
-    "lint": "next lint",
-    "deploy": "npm run build && npm run export && npm run gh-pages",
+    "deploy": "npm run build && npm run gh-pages",
     "build": "next build",
     "gh-pages": "gh-pages -d out"
   },
